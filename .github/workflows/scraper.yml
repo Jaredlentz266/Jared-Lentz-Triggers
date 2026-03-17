@@ -1,4 +1,4 @@
-name: Trigger Event Scraper
+name: Trigger Event Scraper 
 
 on:
   schedule:
