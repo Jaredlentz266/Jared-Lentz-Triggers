@@ -90,7 +90,7 @@ class GoogleNewsScraper(BaseScraper):
                 queries.append((f'{term} {region}', EventType.MERGER_ACQUISITION, False))
 
         # Industry-specific queries
-        industries = ['healthcare', 'hospital', 'construction', 'restaurant franchise', 'insurance']
+        industries = ['manufacturing', 'wholesale distribution', 'CPG consumer goods', 'agriculture food', 'industrial products']
         for industry in industries:
             queries.append((f'{industry} CFO', EventType.CFO_HIRE, False))
             queries.append((f'{industry} acquisition', EventType.MERGER_ACQUISITION, False))

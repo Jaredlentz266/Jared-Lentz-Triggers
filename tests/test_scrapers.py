@@ -19,7 +19,7 @@ class TestBaseScraper(unittest.TestCase):
             'territory': {
                 'regions': ['New York', 'Massachusetts', 'Boston'],
                 'cities': ['NYC', 'Boston'],
-                'industries': ['Healthcare', 'Hospital', 'Insurance'],
+                'industries': ['Manufacturing', 'Wholesale', 'CPG'],
                 'excluded_industries': ['Bank', 'Banking'],
                 'company_filters': {
                     'exclude_public_companies': True,
@@ -90,7 +90,7 @@ class TestBaseScraper(unittest.TestCase):
         scraper = RSSScraper(self.config)
 
         # Should match target industry
-        matches, excluded = scraper.matches_industry("Healthcare provider announces new CFO")
+        matches, excluded = scraper.matches_industry("Manufacturing company announces new CFO")
         self.assertTrue(matches)
         self.assertFalse(excluded)
 
@@ -154,7 +154,7 @@ class TestRSSScraper(unittest.TestCase):
             'territory': {
                 'regions': ['New York'],
                 'cities': ['NYC'],
-                'industries': ['Healthcare'],
+                'industries': ['Manufacturing'],
                 'excluded_industries': ['Bank'],
                 'company_filters': {
                     'exclude_public_companies': False,
@@ -203,7 +203,7 @@ class TestGoogleNewsScraper(unittest.TestCase):
             'territory': {
                 'regions': ['New York', 'Boston', 'Toronto'],
                 'cities': [],
-                'industries': ['Healthcare', 'Insurance'],
+                'industries': ['Manufacturing', 'Wholesale'],
                 'excluded_industries': [],
                 'company_filters': {
                     'exclude_public_companies': False,
