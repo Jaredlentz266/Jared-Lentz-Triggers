@@ -5,7 +5,7 @@
 territory:
   name: "East Coast & Eastern Canada"
 
-  # Companies to specifically monitor (add your target accounts)
+  # Companies to specifically monitor (add your target accounts) 
   target_companies:
     # Add your target accounts here
     # - "Company Name"
