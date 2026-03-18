@@ -1087,7 +1087,7 @@ sources:
 alerts:
   # Email alerts (enabled via GitHub secrets)
   email:
-    enabled: True
+    enabled: true
     smtp_server: "smtp.gmail.com"
     smtp_port: 587
     sender_email: "your-email@gmail.com"
