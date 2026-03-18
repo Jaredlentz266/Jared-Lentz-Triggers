@@ -1093,7 +1093,7 @@ alerts:
     sender_email: "your-email@gmail.com"
     sender_password: ""
     recipient_emails:
-      - "mwjacobs3@gmail.com"
+      - "jaredlentz262626@gmail.com"
 
   # Slack alerts
   slack:
