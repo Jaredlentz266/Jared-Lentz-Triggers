@@ -17,14 +17,14 @@ class TestBaseScraper(unittest.TestCase):
         """Set up test config."""
         self.config = {
             'territory': {
-                'regions': ['New York', 'Massachusetts', 'Boston'],
-                'cities': ['NYC', 'Boston'],
-                'industries': ['Healthcare', 'Hospital', 'Insurance'],
+                'regions': ['California', 'Oregon', 'Washington', 'Colorado', 'Minnesota'],
+                'cities': ['Los Angeles', 'Seattle', 'Denver'],
+                'industries': ['Manufacturing', 'Wholesale', 'CPG'],
                 'excluded_industries': ['Bank', 'Banking'],
                 'company_filters': {
                     'exclude_public_companies': True,
                     'public_company_indicators': ['NYSE', 'NASDAQ', 'publicly traded'],
-                    'excluded_public_companies': ['Boston Scientific', 'Johnson & Johnson'],
+                    'excluded_public_companies': ['Apple', 'Intel'],
                 }
             },
             'keywords': {
@@ -73,16 +73,16 @@ class TestBaseScraper(unittest.TestCase):
         scraper = RSSScraper(self.config)
 
         # Should match region
-        in_territory, regions = scraper.matches_territory("Company based in New York announces...")
+        in_territory, regions = scraper.matches_territory("Company based in California announces...")
         self.assertTrue(in_territory)
-        self.assertIn('New York', regions)
+        self.assertIn('California', regions)
 
         # Should match city
-        in_territory, regions = scraper.matches_territory("Boston-based startup raises funds")
+        in_territory, regions = scraper.matches_territory("Seattle-based startup raises funds")
         self.assertTrue(in_territory)
 
         # Should not match
-        in_territory, regions = scraper.matches_territory("California company expands")
+        in_territory, regions = scraper.matches_territory("Florida company expands")
         self.assertFalse(in_territory)
 
     def test_industry_matching(self):
@@ -90,7 +90,7 @@ class TestBaseScraper(unittest.TestCase):
         scraper = RSSScraper(self.config)
 
         # Should match target industry
-        matches, excluded = scraper.matches_industry("Healthcare provider announces new CFO")
+        matches, excluded = scraper.matches_industry("Manufacturing company announces new CFO")
         self.assertTrue(matches)
         self.assertFalse(excluded)
 
@@ -152,9 +152,9 @@ class TestRSSScraper(unittest.TestCase):
         """Set up test config."""
         self.config = {
             'territory': {
-                'regions': ['New York'],
-                'cities': ['NYC'],
-                'industries': ['Healthcare'],
+                'regions': ['California'],
+                'cities': ['Los Angeles'],
+                'industries': ['Manufacturing'],
                 'excluded_industries': ['Bank'],
                 'company_filters': {
                     'exclude_public_companies': False,
@@ -201,9 +201,9 @@ class TestGoogleNewsScraper(unittest.TestCase):
         """Set up test config."""
         self.config = {
             'territory': {
-                'regions': ['New York', 'Boston', 'Toronto'],
+                'regions': ['California', 'Oregon', 'Washington'],
                 'cities': [],
-                'industries': ['Healthcare', 'Insurance'],
+                'industries': ['Manufacturing', 'Wholesale'],
                 'excluded_industries': [],
                 'company_filters': {
                     'exclude_public_companies': False,
